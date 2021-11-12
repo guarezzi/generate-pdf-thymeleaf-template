@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        
+        div.header {
+            display: block; 
+            text-align: center;  
+            position: running(header);
+            border-bottom: 1px solid lightgrey;
+            padding: 18px 0px;
+        }
+        
+        div.header img:nth-child(1) {
+            padding: 18px 0px;
+            float: left;
+        }
+        
+        div.header > div {
+            float: right;
+        }
+
+        div.header > div > p {
+            text-align: right;
+            margin: 0px;
+        }
+
+        div.header > div > p:nth-child(2) {
+            margin-bottom: 18px;
+        }
+        
+        div.footer {
+            display: block; 
+            text-align: center;
+            border-top: 1px solid lightgrey;
+            padding: 18px 0px;
+            position: running(footer);
+        }
+
+        div.footer p {
+            margin-bottom: 4px;
+        }
+
+        div.content {
+            page-break-after: always;
+        }
+
+        @page {
+            @top-center { content: element(header) }
+            margin-top: 140px;
+        }
+
+        @page { 
+            @bottom-center { content: element(footer) }
+            margin-bottom: 160px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+        A div com a classe "content" deve vir depois das divs com classe header e footer respectivamente pois assim o ITextRenderer consegue interpretar o cabeçalho e o rodapé antes do conteúdo e repetí-los em todas as páginas.
+        Se você quiser que o header seja impresso somente na primeira página e o footer somente na ultima, basta colocar o div content entre eles.
+        
+        Além da ordem das divs o @page em styles também são importantes pois eles definem o posicionamento dos elementos header e footer ( vide content: element no estilo) 
+        além de determinar também o tamanho do header e do footer utilizando respectivamente margin-top e margin-bottom;
+    -->
+    <div class="header">
+       <img src="src/main/resources/static/images/java_logo.jpg" height="80"/>
+       <img src="src/main/resources/static/images/thymeleaf.png" height="80"/>
+        <div class="header-data">
+            <h4>Gerando PDF usando thymeleaf como template</h4>
+            <small> <span th:text="${#temporals.day(today)}"></span> de <span th:text="${#temporals.monthName(today)}"></span> de <span th:text="${#temporals.year(today)}"></span></small>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div> <img src="src/main/resources/static/images/thymeleaf.png" height="60"/> </div>
+    </div>
+
+    <div class="content">
+        <p> Podemos adicionar livremente qualquer conteúdo dentro desta div </p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>Segunda página aqui mantendo o cabeçalho e o rodapé</p>
+    </div>
+
+</body>
+
+</html>
